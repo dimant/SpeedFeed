@@ -8,6 +8,8 @@
         /// Generate cuts at different speeds and feeds.
         /// </summary>
         /// <param name="n">number of cuts</param>
+        /// <param name="lineLength">length of lines</param>
+        /// <param name="depthOfCut">depth of cut</param>
         /// <param name="speed">starting spindle speed</param>
         /// <param name="speedStep">increments of spindle speed</param>
         /// <param name="feed">starting feed speed</param>
