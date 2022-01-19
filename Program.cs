@@ -45,7 +45,10 @@
                 currentSpeed += speedStep;
                 currentFeed += feedStep;
 
-                root.AddChild(new StepBlock(currentX, currentY));
+                if(i < n - 1)
+                {
+                    root.AddChild(new StepBlock(currentX, currentY));
+                }
             }
 
             root.Generate();
