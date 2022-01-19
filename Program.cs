@@ -15,11 +15,10 @@
         /// <param name="feed">starting feed speed</param>
         /// <param name="feedStep">increments of feed speed</param>
         public static void Main(
-            int n = 3,
-            double lineLength = 25.0,
+            double lineLength = 5.0,
             double depthOfCut = 1.0,
-            int speed = 1000, int speedStep = 100,
-            int feed = 2600, int feedStep = 100)
+            int speeds = 3, int speed = 1000, int speedStep = 100,
+            int feeds = 3, int feed = 2600, int feedStep = 100)
         {
             var root = new RootBlock(speed);
 
@@ -27,30 +26,44 @@
             var currentFeed = feed;
             var currentX = 0.0;
             var currentY = 0.0;
-            var xoffset = 10.0;
+            var xoffset = 5.0;
+            var yoffset = 3;
 
-            root.AddHeaderLine($"Total Width: {string.Format("{0:0.0000}", n * xoffset)}");
-            root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", lineLength)}");
+            root.AddHeaderLine($"Total Width: {string.Format("{0:0.0000}", feeds * xoffset - xoffset)}");
+            root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", speeds * (lineLength + yoffset) - yoffset)}");
             root.AddHeaderLine($"Depth of cut: {string.Format("{0:0.0000}", depthOfCut)}");
-            root.AddHeaderLine($"Speed from: {speed} to: {speed + n * speedStep} step: {speedStep}");
-            root.AddHeaderLine($"Feed from: {feed}  to: {feed + n * feedStep} step: {feedStep}");
+            root.AddHeaderLine($"Speed from: {speed} to: {speed + speeds * speedStep} step: {speedStep}");
+            root.AddHeaderLine($"Feed from: {feed}  to: {feed + feeds * feedStep} step: {feedStep}");
 
-            for (int i = 0; i < n; i++)
+            for (int s = 0; s < speeds; s++)
             {
-                root.AddChild(new LineBlock(
-                    length: lineLength,
-                    depthOfCut: depthOfCut,
-                    speed: currentSpeed,
-                    feed: currentFeed));
-
-                currentX += xoffset;
-                currentY += 0.0;
-                currentSpeed += speedStep;
-                currentFeed += feedStep;
-
-                if(i < n - 1)
+                for (int f = 0; f < feeds; f++)
                 {
-                    root.AddChild(new StepBlock(currentX, currentY));
+                    root.AddChild(new LineBlock(
+                        y: currentY,
+                        length: lineLength,
+                        depthOfCut: depthOfCut,
+                        speed: currentSpeed,
+                        feed: currentFeed));
+
+                    currentX += xoffset;
+                    currentFeed += feedStep;
+
+                    if(f < feeds - 1)
+                    {
+                        root.AddChild(new MoveBlock(currentX, currentY));
+                    }
+                }
+
+                currentSpeed += speedStep;
+                currentY += yoffset + lineLength;
+
+                currentFeed = feed;
+                currentX = 0.0;
+
+                if(s < speeds - 1)
+                {
+                    root.AddChild(new MoveBlock(currentX, currentY));
                 }
             }
 

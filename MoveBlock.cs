@@ -1,11 +1,11 @@
 ﻿namespace SpeedFeed
 {
-    internal class StepBlock : Block
+    internal class MoveBlock : Block
     {
         private double x;
         private double y;
 
-        public StepBlock(double x, double y)
+        public MoveBlock(double x, double y)
         {
             this.x = x;
             this.y = y;
@@ -13,7 +13,7 @@
 
         public override string GetDescription()
         {
-            return $"Moving to next line.";
+            return $"Moving to next cut.";
         }
 
         public override void Generate()

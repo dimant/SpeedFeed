@@ -31,9 +31,8 @@
             base.Generate();
 
             Line($"G00 Z5.0000"); // move to 5mm above work-piece
-            Line($"G00 Y0.0000"); // move to x home
+            Line($"G00 Y0.0000"); // move to y home
             Line($"G00 X0.0000"); // move to x home
-            Line($"G00 Z0.5000"); // move to 0.5mm above work-piece
             Line($"M05"); // turn off spindle
         }
 
