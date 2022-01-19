@@ -4,6 +4,14 @@
 
     internal class Program
     {
+        /// <summary>
+        /// Generate cuts at different speeds and feeds.
+        /// </summary>
+        /// <param name="n">number of cuts</param>
+        /// <param name="speed">starting spindle speed</param>
+        /// <param name="speedStep">increments of spindle speed</param>
+        /// <param name="feed">starting feed speed</param>
+        /// <param name="feedStep">increments of feed speed</param>
         public static void Main(
             int n = 3,
             int speed = 1000, int speedStep = 100,
