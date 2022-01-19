@@ -26,9 +26,11 @@
             var xoffset = 10.0;
 
             var length = 25.0;
+            var depthOfCut = 1.0;
 
-            root.AddHeaderLine($"Total Width: {n * xoffset}");
-            root.AddHeaderLine($"Total Height: {length}");
+            root.AddHeaderLine($"Total Width: {string.Format("{0:0.0000}", n * xoffset)}");
+            root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", length)}");
+            root.AddHeaderLine($"Depth of cut: {string.Format("{0:0.0000}", depthOfCut)}");
             root.AddHeaderLine($"Speed from: {speed} to: {speed + n * speedStep} step: {speedStep}");
             root.AddHeaderLine($"Feed from: {feed}  to: {feed + n * feedStep} step: {feedStep}");
 
@@ -36,7 +38,7 @@
             {
                 root.AddChild(new LineBlock(
                     length: length,
-                    depthOfCut: 1.0,
+                    depthOfCut: depthOfCut,
                     speed: currentSpeed,
                     feed: currentFeed));
 

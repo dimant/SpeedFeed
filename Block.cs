@@ -11,7 +11,7 @@
 
         protected string Number(double d)
         {
-            return String.Format("{0:0.0000}", d);
+            return string.Format("{0:0.0000}", d);
         }
 
         protected void Line(string line)
