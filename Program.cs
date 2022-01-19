@@ -14,6 +14,8 @@
         /// <param name="feedStep">increments of feed speed</param>
         public static void Main(
             int n = 3,
+            double lineLength = 25.0,
+            double depthOfCut = 1.0,
             int speed = 1000, int speedStep = 100,
             int feed = 2600, int feedStep = 100)
         {
@@ -25,11 +27,8 @@
             var currentY = 0.0;
             var xoffset = 10.0;
 
-            var length = 25.0;
-            var depthOfCut = 1.0;
-
             root.AddHeaderLine($"Total Width: {string.Format("{0:0.0000}", n * xoffset)}");
-            root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", length)}");
+            root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", lineLength)}");
             root.AddHeaderLine($"Depth of cut: {string.Format("{0:0.0000}", depthOfCut)}");
             root.AddHeaderLine($"Speed from: {speed} to: {speed + n * speedStep} step: {speedStep}");
             root.AddHeaderLine($"Feed from: {feed}  to: {feed + n * feedStep} step: {feedStep}");
@@ -37,7 +36,7 @@
             for (int i = 0; i < n; i++)
             {
                 root.AddChild(new LineBlock(
-                    length: length,
+                    length: lineLength,
                     depthOfCut: depthOfCut,
                     speed: currentSpeed,
                     feed: currentFeed));
