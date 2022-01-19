@@ -11,7 +11,6 @@
         {
             var root = new RootBlock(speed);
 
-
             var currentSpeed = speed;
             var currentFeed = feed;
             var currentX = 0.0;
