@@ -23,7 +23,7 @@
             Line($"G01 Z0.0000 F{feed} S{speed}"); // set feed and speed
             Line($"G01 Z-{depthOfCut}"); // plunge
             Line($"G01 Y{Number(length)}");
-            Line($"G01 Z{Constants.SafeHeight}");
+            Line($"G01 Z{Number(Constants.SafeHeight)}");
             Line($"G01 Y0.0000");
         }
 
