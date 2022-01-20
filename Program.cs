@@ -27,13 +27,13 @@
             var currentX = 0.0;
             var currentY = 0.0;
             var xoffset = 5.0;
-            var yoffset = 3;
+            var yoffset = 5.0;
 
             root.AddHeaderLine($"Total Width: {string.Format("{0:0.0000}", feeds * xoffset - xoffset)}");
             root.AddHeaderLine($"Total Height: {string.Format("{0:0.0000}", speeds * (lineLength + yoffset) - yoffset)}");
             root.AddHeaderLine($"Depth of cut: {string.Format("{0:0.0000}", depthOfCut)}");
-            root.AddHeaderLine($"Speed from: {speed} to: {speed + speeds * speedStep} step: {speedStep}");
-            root.AddHeaderLine($"Feed from: {feed}  to: {feed + feeds * feedStep} step: {feedStep}");
+            root.AddHeaderLine($"Speed from: {speed} to: {speed + (speeds - 1) * speedStep} step: {speedStep}");
+            root.AddHeaderLine($"Feed from: {feed}  to: {feed + (feeds - 1) * feedStep} step: {feedStep}");
 
             for (int s = 0; s < speeds; s++)
             {
