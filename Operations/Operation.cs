@@ -4,8 +4,8 @@
 
     internal abstract class Operation : IOperation
     {
-        private StringBuilder builder = new StringBuilder();
-        private IList<IOperation> children = new List<IOperation>();
+        private readonly StringBuilder builder = new StringBuilder();
+        private readonly IList<IOperation> children = new List<IOperation>();
 
         public abstract string GetDescription();
 

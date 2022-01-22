@@ -2,11 +2,11 @@
 {
     internal class Line : Operation
     {
-        private double y;
-        private double length;
-        private double depth;
-        private int speed;
-        private int feed;
+        private readonly double y;
+        private readonly double length;
+        private readonly double depth;
+        private readonly int speed;
+        private readonly int feed;
 
         public Line(
             double y,

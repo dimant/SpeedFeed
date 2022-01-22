@@ -2,8 +2,8 @@
 {
     internal class Root : Operation
     {
-        private int speed;
-        private IList<string> headerLines = new List<string>();
+        private readonly int speed;
+        private readonly IList<string> headerLines = new List<string>();
 
         public Root(int speed)
         {

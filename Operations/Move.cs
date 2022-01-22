@@ -2,8 +2,8 @@
 {
     internal class Move : Operation
     {
-        private double x;
-        private double y;
+        private readonly double x;
+        private readonly double y;
 
         public Move(double x, double y)
         {

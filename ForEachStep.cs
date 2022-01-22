@@ -2,9 +2,9 @@
 {
     internal class ForEachDecrement
     {
-        public double min;
-        public double max;
-        public double step;
+        public readonly double min;
+        public readonly double max;
+        public readonly double step;
 
         public ForEachDecrement(double min, double max, double step)
         {
