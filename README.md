@@ -1,6 +1,7 @@
 # SpeedFeed
 Generates gcode for testing cuts at different speeds and feeds.
 
+```
 C:\..\>SpeedFeed.exe --help
 Description:
 
@@ -19,3 +20,4 @@ Options:
   --feed-step <feed-step>        feedStep [default: 100]
   --version                      Show version information
   -?, -h, --help                 Show help and usage information
+```
