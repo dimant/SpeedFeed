@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SpeedFeed": {
+      "commandName": "Project",
+      "commandLineArgs": "--max-depth=3 --depth-of-cut=0.7"
+    }
+  }
+}

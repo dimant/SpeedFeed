@@ -1,11 +1,11 @@
-﻿namespace SpeedFeed
+﻿namespace SpeedFeed.Operations
 {
-    internal class RootBlock : Block
+    internal class Root : Operation
     {
         private int speed;
         private IList<string> headerLines = new List<string>();
 
-        public RootBlock(int speed)
+        public Root(int speed)
         {
             this.speed = speed;
         }

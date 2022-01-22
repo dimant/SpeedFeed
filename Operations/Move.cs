@@ -1,11 +1,11 @@
-﻿namespace SpeedFeed
+﻿namespace SpeedFeed.Operations
 {
-    internal class MoveBlock : Block
+    internal class Move : Operation
     {
         private double x;
         private double y;
 
-        public MoveBlock(double x, double y)
+        public Move(double x, double y)
         {
             this.x = x;
             this.y = y;

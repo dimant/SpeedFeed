@@ -1,5 +1,6 @@
 ﻿namespace SpeedFeed
 {
+    using SpeedFeed.Operations;
     using System;
 
     internal class Program
@@ -7,20 +8,21 @@
         /// <summary>
         /// Generate cuts at different speeds and feeds.
         /// </summary>
-        /// <param name="n">number of cuts</param>
-        /// <param name="lineLength">length of lines</param>
+        /// <param name="maxDepth">max depth</param>
         /// <param name="depthOfCut">depth of cut</param>
+        /// <param name="lineLength">length of lines</param>
         /// <param name="speed">starting spindle speed</param>
         /// <param name="speedStep">increments of spindle speed</param>
         /// <param name="feed">starting feed speed</param>
         /// <param name="feedStep">increments of feed speed</param>
         public static void Main(
-            double lineLength = 5.0,
+            double maxDepth,
             double depthOfCut = 1.0,
+            double lineLength = 5.0,
             int speeds = 3, int speed = 1000, int speedStep = 100,
             int feeds = 3, int feed = 2600, int feedStep = 100)
         {
-            var root = new RootBlock(speed);
+            var root = new Root(speed);
 
             var currentSpeed = speed;
             var currentFeed = feed;
@@ -35,23 +37,28 @@
             root.AddHeaderLine($"Speed from: {speed} to: {speed + (speeds - 1) * speedStep} step: {speedStep}");
             root.AddHeaderLine($"Feed from: {feed}  to: {feed + (feeds - 1) * feedStep} step: {feedStep}");
 
+            var cutToDepth = new ForEachDecrement(-maxDepth, 0.0, depthOfCut);
+
             for (int s = 0; s < speeds; s++)
             {
                 for (int f = 0; f < feeds; f++)
                 {
-                    root.AddChild(new LineBlock(
-                        y: currentY,
-                        length: lineLength,
-                        depthOfCut: depthOfCut,
-                        speed: currentSpeed,
-                        feed: currentFeed));
+                    cutToDepth.Do((z) =>
+                    {
+                        root.AddChild(new Line(
+                            y: currentY,
+                            length: lineLength,
+                            depth: z,
+                            speed: currentSpeed,
+                            feed: currentFeed));
+                    });
 
                     currentX += xoffset;
                     currentFeed += feedStep;
 
                     if(f < feeds - 1)
                     {
-                        root.AddChild(new MoveBlock(currentX, currentY));
+                        root.AddChild(new Move(currentX, currentY));
                     }
                 }
 
@@ -63,7 +70,7 @@
 
                 if(s < speeds - 1)
                 {
-                    root.AddChild(new MoveBlock(currentX, currentY));
+                    root.AddChild(new Move(currentX, currentY));
                 }
             }
 

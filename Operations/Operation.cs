@@ -1,11 +1,11 @@
-﻿namespace SpeedFeed
+﻿namespace SpeedFeed.Operations
 {
     using System.Text;
 
-    internal abstract class Block : IBlock
+    internal abstract class Operation : IOperation
     {
         private StringBuilder builder = new StringBuilder();
-        private IList<IBlock> children = new List<IBlock>();
+        private IList<IOperation> children = new List<IOperation>();
 
         public abstract string GetDescription();
 
@@ -40,7 +40,7 @@
             return builder.ToString();
         }
 
-        public void AddChild(IBlock child)
+        public void AddChild(IOperation child)
         {
             children.Add(child);
         }
